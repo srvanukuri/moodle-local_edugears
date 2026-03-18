@@ -22,12 +22,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['manage_tools_link'] = 'Manage external tools';
 $string['pluginname'] = 'EduGears AI LTI';
 $string['privacy:metadata'] = 'The EduGears AI LTI plugin does not store any personal data locally. User data is transmitted to the external EduGears AI service via LTI 1.3 for authentication purposes only.';
 $string['privacy:metadata:externalpurpose'] = 'This information is sent to the EduGears AI external service to provide AI-powered educational tools. Only minimal data (name, email, course context) is shared via standard LTI claims.';
-$string['settings_heading'] = 'EduGears AI LTI Settings';
-$string['settings_heading_desc'] = 'Configure EduGears AI LTI integration for your Moodle site. Visit <a href="https://lti.edugears.ai" target="_blank">lti.edugears.ai</a> for documentation and support.';
 $string['registration_url'] = 'Registration URL';
 $string['registration_url_desc'] = 'The LTI 1.3 dynamic registration URL for EduGears AI. Use this URL in Site Administration → Plugins → External tool → Manage tools to register the tool.';
+$string['settings_heading'] = 'EduGears AI LTI Settings';
+$string['settings_heading_desc'] = 'Configure EduGears AI LTI integration for your Moodle site. Visit <a href="https://lti.edugears.ai" target="_blank">lti.edugears.ai</a> for documentation and support.';
 $string['setup_complete'] = 'EduGears AI LTI has been installed. To complete setup, go to {$a} and paste the registration URL to add EduGears AI as an external tool.';
-$string['manage_tools_link'] = 'Manage external tools';

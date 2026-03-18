@@ -25,8 +25,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Runs after the plugin is installed.
  *
@@ -46,7 +44,9 @@ function xmldb_local_edugears_install() {
 
     // Send a notification to the admin about completing setup.
     \core\notification::info(
-        get_string('setup_complete', 'local_edugears',
+        get_string(
+            'setup_complete',
+            'local_edugears',
             html_writer::link(
                 new moodle_url('/mod/lti/toolconfigure.php'),
                 get_string('manage_tools_link', 'local_edugears')

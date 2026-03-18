@@ -38,7 +38,8 @@ if ($hassiteconfig) {
     $settings->add(new admin_setting_description(
         'local_edugears/registration_url_display',
         get_string('registration_url', 'local_edugears'),
-        '<div style="padding: 10px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; font-family: monospace; font-size: 14px;">'
+        '<div style="padding: 10px; background: #f0f0f0; border: 1px solid #ccc;'
+        . ' border-radius: 4px; font-family: monospace; font-size: 14px;">'
         . 'https://lti-api.edugears.ai/lti/register'
         . '</div><br>'
         . get_string('registration_url_desc', 'local_edugears')

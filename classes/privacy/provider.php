@@ -34,7 +34,6 @@ use core_privacy\local\metadata\provider as metadata_provider;
  * via LTI 1.3 but does not store personal data locally.
  */
 class provider implements \core_privacy\local\metadata\provider {
-
     /**
      * Returns metadata about the external data sent via LTI.
      *
