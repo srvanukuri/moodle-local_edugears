@@ -21,4 +21,3 @@
  * @copyright  2026 EduGears AI <support@edugears.ai>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
