@@ -4,14 +4,15 @@ Add AI-powered educational tools to your Moodle LMS via LTI 1.3 — no custom co
 
 ## Features
 
-- **AI Question Generator** — Generate quiz questions from any topic
-- **AI Slides Generator** — Create presentations instantly
-- **AI Grading** — Intelligent assessment with automatic grade passback
-- **AI Tutor** — 24/7 personalized student support
-- **AI Study Guide Generator** — Comprehensive study materials on demand
-- **AI Worksheet Generator** — Practice worksheets in a click
-- **AI Lesson Planner** — Structured lesson plans in seconds
-- **AI Assistant** — Your teaching co-pilot
+- **AI Course Modules** — Upload a syllabus and AI decomposes it into structured lessons, generates all resources per lesson, and exports as SCORM 1.2
+- **AI Question Generator** — Generate quiz questions from any topic with 9 question types
+- **AI Slides Generator** — Create presentations instantly from any topic or document
+- **AI Grading** — Intelligent assessment with detailed feedback and automatic grade passback
+- **AI Tutor** — 24/7 personalized student support with multiple learning modes
+- **AI Study Guide Generator** — Comprehensive study materials and revision guides on demand
+- **AI Worksheet Generator** — Practice worksheets tailored to any topic or grade level
+- **AI Lesson Planner** — Structured lesson plans with objectives, activities, and assessments
+- **AI Assistant** — Your teaching co-pilot for lesson prep and content strategy
 
 ## Requirements
 
