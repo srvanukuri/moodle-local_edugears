@@ -34,6 +34,23 @@ if ($hassiteconfig) {
         get_string('settings_heading_desc', 'local_edugears')
     ));
 
+    // Setup video link.
+    $videourl = 'https://youtu.be/H-bZwDy_mpA';
+    $settings->add(new admin_setting_description(
+        'local_edugears/setup_video_display',
+        get_string('setup_video', 'local_edugears'),
+        '<div style="margin-bottom: 15px;">'
+        . get_string('setup_video_desc', 'local_edugears')
+        . '<br><br>'
+        . html_writer::link(
+            $videourl,
+            '&#9654; Watch Setup Video',
+            ['class' => 'btn btn-success', 'target' => '_blank',
+             'style' => 'font-size: 15px; padding: 8px 20px;']
+        )
+        . '</div>'
+    ));
+
     // Display the registration URL (read-only for reference).
     $settings->add(new admin_setting_description(
         'local_edugears/registration_url_display',

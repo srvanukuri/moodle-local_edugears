@@ -31,3 +31,5 @@ $string['registration_url_desc'] = 'The LTI 1.3 dynamic registration URL for Edu
 $string['settings_heading'] = 'EduGears AI LTI Settings';
 $string['settings_heading_desc'] = 'Configure EduGears AI LTI integration for your Moodle site. Visit <a href="https://lti.edugears.ai" target="_blank">lti.edugears.ai</a> for documentation and support.';
 $string['setup_complete'] = 'EduGears AI LTI has been installed. To complete setup, go to {$a} and paste the registration URL to add EduGears AI as an external tool.';
+$string['setup_video'] = 'Setup Video';
+$string['setup_video_desc'] = 'Watch this short video to see how to set up EduGears AI in your Moodle LMS step by step.';

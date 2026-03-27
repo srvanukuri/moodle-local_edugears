@@ -2,6 +2,26 @@
 
 Add AI-powered educational tools to your Moodle LMS via LTI 1.3 — no custom code required.
 
+## Setup Video
+
+Watch the setup video for a step-by-step walkthrough: [EduGears AI Moodle Setup](https://youtu.be/H-bZwDy_mpA)
+
+## Quick Setup (No Plugin Required)
+
+You do **not** need to install this plugin to use EduGears AI. You can set it up directly in Moodle's built-in External tool settings — no database changes, no upgrades needed:
+
+1. Go to **Site Administration → Plugins → Activity modules → External tool → Manage tools**
+2. Paste `https://lti-api.edugears.ai/lti/register` in the Tool URL field
+3. Click **Add LTI Advantage**
+4. Click **Activate** on the EduGears AI tool
+5. Done! Instructors can now add EduGears AI to their courses
+
+For detailed instructions with screenshots, visit: **https://lti.edugears.ai/setup**
+
+## What Does This Plugin Do?
+
+This optional plugin adds a settings page under Site Administration → Plugins → Local plugins → EduGears AI LTI that displays the registration URL and a direct link to Manage tools for convenience. It does **not** create any database tables or modify your Moodle database schema.
+
 ## Features
 
 - **AI Course Modules** — Upload a syllabus and AI decomposes it into structured lessons, generates all resources per lesson, and exports as SCORM 1.2
@@ -16,20 +36,20 @@ Add AI-powered educational tools to your Moodle LMS via LTI 1.3 — no custom co
 
 ## Requirements
 
-- Moodle 4.0 or later (Moodle 4.5+ recommended)
+- Moodle 3.10 or later for LTI 1.3 dynamic registration (Moodle 4.0+ for plugin installation)
 - Site administrator access
 
-## Installation
+## Plugin Installation (Optional)
+
+If you prefer the convenience of a settings page:
 
 1. Install this plugin via the Moodle Plugins directory or by extracting the ZIP into `/local/edugears/`
 2. Go to **Site Administration → Notifications** to complete the installation
-3. Navigate to **Site Administration → Plugins → Activity modules → External tool → Manage tools**
-4. Paste the registration URL shown in the plugin settings and click **Add LTI Advantage**
-5. Activate the tool and set it to appear in the activity chooser
+3. The plugin settings page will guide you through the remaining setup
 
-The registration URL is: `https://lti-api.edugears.ai/lti/register`
+**Note:** The "Upgrade Moodle database" step during installation is Moodle's standard plugin registration process. This plugin does not create any database tables or modify existing ones.
 
-## After Installation
+## After Setup
 
 Instructors can add EduGears AI tools to any course:
 
