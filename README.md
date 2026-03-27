@@ -6,15 +6,17 @@ Add AI-powered educational tools to your Moodle LMS via LTI 1.3 — no custom co
 
 Watch the setup video for a step-by-step walkthrough: [EduGears AI Moodle Setup](https://youtu.be/H-bZwDy_mpA)
 
-## Quick Setup (No Plugin Required)
+## Quick Setup in Under 3 Minutes (No Plugin Required)
 
-You do **not** need to install this plugin to use EduGears AI. You can set it up directly in Moodle's built-in External tool settings — no database changes, no upgrades needed:
+You do **not** need to install this plugin to use EduGears AI. Just use Moodle's built-in External tool settings — **no plugin installation, no Moodle upgrades, no database changes**:
 
 1. Go to **Site Administration → Plugins → Activity modules → External tool → Manage tools**
 2. Paste `https://lti-api.edugears.ai/lti/register` in the Tool URL field
 3. Click **Add LTI Advantage**
 4. Click **Activate** on the EduGears AI tool
 5. Done! Instructors can now add EduGears AI to their courses
+
+This method works on any Moodle version that supports LTI 1.3 (Moodle 3.10+) and requires zero changes to your Moodle site.
 
 For detailed instructions with screenshots, visit: **https://lti.edugears.ai/setup**
 
