@@ -35,6 +35,7 @@ This optional plugin adds a settings page under Site Administration → Plugins 
 - **AI Worksheet Generator** — Practice worksheets tailored to any topic or grade level
 - **AI Lesson Planner** — Structured lesson plans with objectives, activities, and assessments
 - **AI Assistant** — Your teaching co-pilot for lesson prep and content strategy
+- **Curriculum Intelligence** — Upload course materials (PDF, DOCX, PPTX) and every AI tool automatically uses them to generate more relevant, course-aligned content
 
 ## Requirements
 
