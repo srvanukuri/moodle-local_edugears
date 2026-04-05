@@ -26,21 +26,24 @@ This optional plugin adds a settings page under Site Administration → Plugins 
 
 ## Features
 
-- **AI Course Modules** — Upload a syllabus and AI decomposes it into structured lessons, generates all resources per lesson, and exports as SCORM 1.2
-- **AI Question Generator** — Generate quiz questions from any topic with 9 question types
-- **AI Slides Generator** — Create presentations instantly from any topic or document
-- **AI Grading** — Intelligent assessment with detailed feedback and automatic grade passback
-- **AI Tutor** — 24/7 personalized student support with multiple learning modes
-- **AI Study Guide Generator** — Comprehensive study materials and revision guides on demand
-- **AI Worksheet Generator** — Practice worksheets tailored to any topic or grade level
-- **AI Lesson Planner** — Structured lesson plans with objectives, activities, and assessments
-- **AI Assistant** — Your teaching co-pilot for lesson prep and content strategy
-- **Curriculum Intelligence** — Upload course materials (PDF, DOCX, PPTX) and every AI tool automatically uses them to generate more relevant, course-aligned content
+- **AI Course Modules** — Upload a syllabus and the AI decomposes it into structured lessons, generates all resources per lesson, and exports them as SCORM 1.2. When shared, students can view questions as a quiz, along with lessons, slides, study guides, and worksheets.
+- **AI Question Generator** — Generate quiz questions from any topic with multiple question types (multiple choice, fill-in-the-blank, matching, and more). Instructors can share questions with students as a quiz or as practice questions. Practice mode shows hints and solutions and includes a flashcard view.
+- **AI Slides Generator** — Create presentation slides from any topic instantly. When shared, students have view-only access to slides.
+- **AI Grading** — Intelligent assessment with detailed feedback and automatic grade passback to your Moodle gradebook. Upload handwritten or typed answer sheets for AI grading based on your rubrics.
+- **AI Tutor** — 24/7 personalized learning support for students with Socratic tutoring mode. Includes 4 teaching roles: Tutor, Mentor, Socrates, and Coach.
+- **AI Study Guide Generator** — Comprehensive study materials and revision guides on demand.
+- **AI Worksheet Generator** — Practice worksheets and activities tailored to any topic or grade level. Share them with students directly. The student view does not show the answer key.
+- **AI Lesson Planner** — Structured lesson plans from topics and learning objectives in seconds. When shared, the student view does not display lesson plans.
+- **AI Assistant** — Your AI teaching co-pilot for instructors. This tool is available to instructors only.
+- **Curriculum Intelligence** — Upload course materials (PDF, DOCX, PPTX) and every AI tool automatically uses them to generate more relevant, course-aligned content. This tool is intended for instructors only.
 
 ## Requirements
 
 - Moodle 3.10 or later for LTI 1.3 dynamic registration (Moodle 4.0+ for plugin installation)
 - Site administrator access
+- **Your Moodle must be publicly accessible** (i.e., reachable from the internet). Registration will not work if your Moodle is running on `localhost` or a private network, because EduGears AI (a cloud service) needs to connect to your Moodle during setup.
+
+**Testing locally?** You can use a tunneling tool like [ngrok](https://ngrok.com) to temporarily expose your local Moodle to the internet. Run `ngrok http 80` (or your Moodle port), then use the generated public URL as your Moodle site address before registering.
 
 ## Plugin Installation (Optional)
 

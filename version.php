@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2026032600;        // The current plugin version (Date: YYYYMMDDXX).
+$plugin->version   = 2026040500;        // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires  = 2022041900;        // Requires Moodle 4.0+.
 $plugin->component = 'local_edugears';  // Full name of the plugin.
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = '1.2.0';
+$plugin->release   = '1.2.1';
