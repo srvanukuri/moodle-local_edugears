@@ -4,7 +4,7 @@ Add AI-powered educational tools to your Moodle LMS via LTI 1.3 — no custom co
 
 ## Setup Video
 
-Watch the setup video for a step-by-step walkthrough: [EduGears AI Moodle Setup](https://youtu.be/H-bZwDy_mpA)
+Watch the setup video for a step-by-step walkthrough: [EduGears AI Moodle Setup](https://youtu.be/RWoXlCUSHMw)
 
 ## Quick Setup in Under 3 Minutes (No Plugin Required)
 
@@ -76,6 +76,7 @@ Instructors can add EduGears AI tools to any course:
 ## Support
 
 - Website: https://lti.edugears.ai
+- YouTube Channel: https://youtube.com/@EduGearsAI_LTI
 - Email: support@edugears.ai
 - Setup Guide: https://lti.edugears.ai/setup
 
