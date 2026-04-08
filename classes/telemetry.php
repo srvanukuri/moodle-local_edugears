@@ -31,10 +31,10 @@
 
 namespace local_edugears;
 
-defined('MOODLE_INTERNAL') || die();
-
+/**
+ * Anonymous install/uninstall telemetry sender.
+ */
 class telemetry {
-
     /** @var string Endpoint URL. */
     const ENDPOINT = 'https://lti-api.edugears.ai/api/plugin/telemetry';
 
