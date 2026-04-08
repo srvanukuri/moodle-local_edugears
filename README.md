@@ -73,6 +73,26 @@ Instructors can add EduGears AI tools to any course:
 - Student content is never used to train AI models
 - Only minimal data (name, email, course context) is shared via standard LTI claims
 
+## Anonymous Adoption Telemetry
+
+On install and uninstall, the plugin sends a single small POST to
+`https://lti-api.edugears.ai/api/plugin/telemetry` so we can measure how
+many sites install the plugin versus complete LTI registration. The
+payload contains only:
+
+- A SHA-256 hash of your site identifier + wwwroot (non-reversible)
+- The plugin version, Moodle version, and PHP version
+
+No personal data, no site URL, no user info, no IP-derived data is sent.
+The request has a 2-second timeout and any failure is silently ignored —
+it will never block install or uninstall.
+
+To opt out, add the following line to your `config.php`:
+
+```php
+$CFG->local_edugears_telemetry = false;
+```
+
 ## Support
 
 - Website: https://lti.edugears.ai

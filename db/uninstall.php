@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version information for EduGears AI LTI.
+ * Pre-uninstall script for EduGears AI LTI.
  *
  * @package    local_edugears
  * @copyright  2026 EduGears AI <support@edugears.ai>
@@ -24,8 +24,12 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2026040800;        // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2022041900;        // Requires Moodle 4.0+.
-$plugin->component = 'local_edugears';  // Full name of the plugin.
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = '1.3.0';
+/**
+ * Runs before the plugin is uninstalled. Sends an anonymous telemetry ping.
+ *
+ * @return bool
+ */
+function xmldb_local_edugears_uninstall() {
+    \local_edugears\telemetry::ping('uninstall');
+    return true;
+}

@@ -54,5 +54,8 @@ function xmldb_local_edugears_install() {
         )
     );
 
+    // Anonymous adoption telemetry — see classes/telemetry.php for details.
+    \local_edugears\telemetry::ping('install');
+
     return true;
 }
