@@ -180,7 +180,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .then(function(data) {
             var resultEl = document.getElementById("eg-result");
             resultEl.innerHTML = ""
-                + "<div style=\"background:#ecfdf5; border:2px solid #059669; border-radius:8px; padding:16px; text-align:center;\">"
+                + "<div style=\"background:#ecfdf5; border:2px solid #059669;"
+                + " border-radius:8px; padding:16px; text-align:center;\">"
                 + "  <p style=\"margin:0 0 8px; font-size:14px; color:#334155;\">Your claim code:</p>"
                 + "  <p style=\"margin:0; font-size:28px; font-weight:700; color:#059669; letter-spacing:2px;\">"
                 +        data.claim_code

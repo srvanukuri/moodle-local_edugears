@@ -6,23 +6,34 @@ Add AI-powered educational tools to your Moodle LMS via LTI 1.3 — no custom co
 
 Watch the setup video for a step-by-step walkthrough: [EduGears AI Moodle Setup](https://youtu.be/RWoXlCUSHMw)
 
-## Quick Setup in Under 3 Minutes (No Plugin Required)
+## Two Ways to Register
 
-You do **not** need to install this plugin to use EduGears AI. Just use Moodle's built-in External tool settings — **no plugin installation, no Moodle upgrades, no database changes**:
+### Option 1: Plugin Registration (Recommended for Firewalled Sites)
+
+If your Moodle site is behind a firewall or cannot be reached from the internet, **install this plugin** and use the one-click registration:
+
+1. Install this plugin (ZIP upload or extract to `/local/edugears/`)
+2. Go to **Site Administration → Notifications** to complete the installation
+3. Click the **Register EduGears AI** button in the install notification (or go to **Plugins → Local plugins → EduGears AI LTI**)
+4. Done! The tool is created locally and registered with EduGears through your browser — no server-side network access required
+
+### Option 2: URL Registration (Requires Outbound Access)
+
+If your Moodle server has open internet access, you can register without installing the plugin:
 
 1. Go to **Site Administration → Plugins → Activity modules → External tool → Manage tools**
 2. Paste `https://lti-api.edugears.ai/lti/register` in the Tool URL field
 3. Click **Add LTI Advantage**
 4. Click **Activate** on the EduGears AI tool
-5. Done! Instructors can now add EduGears AI to their courses
+5. Done!
 
-This method works on any Moodle version that supports LTI 1.3 (Moodle 3.10+) and requires zero changes to your Moodle site.
+> **Note:** This method requires EduGears AI (a cloud service) to reach your Moodle server during registration. It will not work if your Moodle is behind a firewall, on `localhost`, or on a private network. Use Option 1 (plugin) in those cases.
 
 For detailed instructions with screenshots, visit: **https://lti.edugears.ai/setup**
 
 ## What Does This Plugin Do?
 
-This optional plugin adds a settings page under Site Administration → Plugins → Local plugins → EduGears AI LTI that displays the registration URL and a direct link to Manage tools for convenience. It does **not** create any database tables or modify your Moodle database schema.
+This plugin provides a **one-click LTI registration** that works even behind firewalls. It creates the LTI 1.3 tool directly in Moodle using internal APIs and registers your site with EduGears via your browser. It also adds a settings page under Site Administration → Plugins → Local plugins → EduGears AI LTI. It does **not** create any database tables or modify your Moodle database schema.
 
 ## Features
 
@@ -39,11 +50,10 @@ This optional plugin adds a settings page under Site Administration → Plugins 
 
 ## Requirements
 
-- Moodle 3.10 or later for LTI 1.3 dynamic registration (Moodle 4.0+ for plugin installation)
+- Moodle 4.0 or later for plugin installation (Moodle 3.10+ for URL registration without plugin)
 - Site administrator access
-- **Your Moodle must be publicly accessible** (i.e., reachable from the internet). Registration will not work if your Moodle is running on `localhost` or a private network, because EduGears AI (a cloud service) needs to connect to your Moodle during setup.
-
-**Testing locally?** You can use a tunneling tool like [ngrok](https://ngrok.com) to temporarily expose your local Moodle to the internet. Run `ngrok http 80` (or your Moodle port), then use the generated public URL as your Moodle site address before registering.
+- **For URL registration (Option 2):** Your Moodle must be publicly accessible (reachable from the internet)
+- **For plugin registration (Option 1):** No server-side network access required — works behind firewalls
 
 ## Plugin Installation (Optional)
 
