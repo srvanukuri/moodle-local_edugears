@@ -37,10 +37,10 @@ $PAGE->set_url(new moodle_url('/local/edugears/register.php'));
 $PAGE->set_title(get_string('register_title', 'local_edugears'));
 $PAGE->set_heading(get_string('register_title', 'local_edugears'));
 
-$edugears_api_base = 'https://lti-api.edugears.ai';
-$edugears_portal   = 'https://lti.edugears.ai';
+$apibase = 'https://lti-api.edugears.ai';
+$portal  = 'https://lti.edugears.ai';
 
-// ── Handle POST — create the LTI tool ───────────────────────────────
+// Handle POST — create the LTI tool.
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_sesskey();
@@ -55,13 +55,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($existing) {
         $typeid = $existing->id;
         $clientid = $existing->clientid;
-        $is_new_tool = false;
+        $isnewtool = false;
     } else {
         // Create the LTI 1.3 tool type using Moodle's internal API.
         $type = new stdClass();
         $type->state = LTI_TOOL_STATE_CONFIGURED;
         $type->name = 'EduGears AI';
-        $type->baseurl = $edugears_api_base . '/lti/launch';
+        $type->baseurl = $apibase . '/lti/launch';
         $type->tooldomain = 'lti-api.edugears.ai';
         $type->ltiversion = LTI_VERSION_1P3;
         $type->description = 'AI-powered learning tools for education';
@@ -69,12 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $type->course = SITEID;
 
         $config = new stdClass();
-        $config->lti_publickeyset     = $edugears_api_base . '/lti/jwks';
+        $config->lti_publickeyset     = $apibase . '/lti/jwks';
         $config->lti_keytype          = 'JWK_KEYSET';
-        $config->lti_initiatelogin    = $edugears_api_base . '/lti/login';
-        $config->lti_redirectionuris  = $edugears_api_base . '/lti/launch';
-        $config->lti_icon              = $edugears_api_base . '/logo.png';
-        $config->lti_secureicon        = $edugears_api_base . '/logo.png';
+        $config->lti_initiatelogin    = $apibase . '/lti/login';
+        $config->lti_redirectionuris  = $apibase . '/lti/launch';
+        $config->lti_icon              = $apibase . '/logo.png';
+        $config->lti_secureicon        = $apibase . '/logo.png';
         $config->lti_customparameters = '';
         $config->lti_coursevisible     = LTI_COURSEVISIBLE_ACTIVITYCHOOSER;
         $config->lti_launchcontainer   = LTI_LAUNCH_CONTAINER_DEFAULT;
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $config->ltiservice_memberships = 1;
 
         $typeid = lti_add_type($type, $config);
-        $is_new_tool = true;
+        $isnewtool = true;
 
         // Read back the auto-generated client ID.
         $tool = $DB->get_record('lti_types', ['id' => $typeid], 'clientid');
@@ -104,8 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'deployment_ids' => [(string) $typeid],
     ];
 
-    $bundle_json = json_encode($bundle, JSON_UNESCAPED_SLASHES);
-    $bundle_b64  = base64_encode($bundle_json);
+    $bundlejson = json_encode($bundle, JSON_UNESCAPED_SLASHES);
+    $bundleb64  = base64_encode($bundlejson);
 
     // Render success page with JS that registers with EduGears.
     echo $OUTPUT->header();
@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo '<div id="eg-status" style="max-width:640px; margin:20px auto; padding:24px;
             background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px;">
         <h3 style="margin:0 0 8px; color:#166534;">' .
-        ($is_new_tool
+        ($isnewtool
             ? get_string('register_success', 'local_edugears')
             : get_string('register_already_exists', 'local_edugears'))
         . '</h3>
@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <textarea id="eg-bundle" rows="3" readonly
                 style="width:100%; font-family:monospace; font-size:12px; padding:8px;
                        border:1px solid #d1d5db; border-radius:4px; resize:none;">' .
-                s($bundle_b64) . '</textarea>
+                s($bundleb64) . '</textarea>
             <button type="button" onclick="
                 document.getElementById(\'eg-bundle\').select();
                 document.execCommand(\'copy\');
@@ -156,17 +156,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <p style="margin:12px 0 0; font-size:14px; color:#64748b;">
             ' . get_string('register_manual_link', 'local_edugears') . '
-            <a href="' . $edugears_portal . '/portal/register-manual" target="_blank"
+            <a href="' . $portal . '/portal/register-manual" target="_blank"
                style="color:#2563eb; text-decoration:underline;">' .
-                $edugears_portal . '/portal/register-manual</a>
+                $portal . '/portal/register-manual</a>
         </p>
     </div>';
 
     // JavaScript: send bundle to EduGears from the admin's browser.
     echo '<script>
     (function() {
-        var bundle = ' . $bundle_json . ';
-        var apiUrl = ' . json_encode($edugears_api_base . '/api/plugin/register') . ';
+        var bundle = ' . $bundlejson . ';
+        var apiUrl = ' . json_encode($apibase . '/api/plugin/register') . ';
 
         fetch(apiUrl, {
             method: "POST",
@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// ── GET — show confirmation page ────────────────────────────────────
+// GET — show confirmation page.
 
 echo $OUTPUT->header();
 // Page heading is already rendered by $PAGE->set_heading().
