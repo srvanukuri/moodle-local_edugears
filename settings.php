@@ -34,6 +34,24 @@ if ($hassiteconfig) {
         get_string('settings_heading_desc', 'local_edugears')
     ));
 
+    // One-click registration button (works behind firewalls).
+    $registerurl = new moodle_url('/local/edugears/register.php');
+    $settings->add(new admin_setting_description(
+        'local_edugears/register_display',
+        get_string('register_title', 'local_edugears'),
+        '<div style="margin-bottom: 20px; padding: 16px; background: #f0fdf4;'
+        . ' border: 1px solid #bbf7d0; border-radius: 8px;">'
+        . '<p style="margin: 0 0 12px; color: #334155;">'
+        . get_string('register_desc', 'local_edugears')
+        . '</p>'
+        . html_writer::link(
+            $registerurl,
+            get_string('register_button', 'local_edugears'),
+            ['class' => 'btn btn-success', 'style' => 'font-size: 16px; padding: 10px 32px;']
+        )
+        . '</div>'
+    ));
+
     // Setup video link.
     $videourl = 'https://youtu.be/H-bZwDy_mpA';
     $settings->add(new admin_setting_description(
@@ -51,7 +69,7 @@ if ($hassiteconfig) {
         . '</div>'
     ));
 
-    // Display the registration URL (read-only for reference).
+    // Display the registration URL (advanced fallback option).
     $settings->add(new admin_setting_description(
         'local_edugears/registration_url_display',
         get_string('registration_url', 'local_edugears'),

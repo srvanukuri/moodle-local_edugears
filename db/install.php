@@ -39,19 +39,13 @@ function xmldb_local_edugears_install() {
     // Store the registration URL in plugin config for easy reference.
     set_config('registration_url', 'https://lti-api.edugears.ai/lti/register', 'local_edugears');
 
-    // Log the installation.
-    $manageurl = new moodle_url('/mod/lti/typessettings.php');
-
-    // Send a notification to the admin about completing setup.
+    // Send a notification directing admin to the one-click registration page.
+    $registerurl = new moodle_url('/local/edugears/register.php');
     \core\notification::info(
-        get_string(
-            'setup_complete',
-            'local_edugears',
-            html_writer::link(
-                new moodle_url('/mod/lti/toolconfigure.php'),
-                get_string('manage_tools_link', 'local_edugears')
-            )
-        )
+        get_string('setup_complete', 'local_edugears')
+        . ' <a href="' . $registerurl->out() . '" class="btn btn-primary" '
+        . 'style="margin-left:8px; font-size:14px; color:#fff !important; text-decoration:none;">'
+        . get_string('register_button', 'local_edugears') . '</a>'
     );
 
     // Anonymous adoption telemetry — see classes/telemetry.php for details.
