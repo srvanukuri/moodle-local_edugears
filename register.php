@@ -167,6 +167,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     (function() {
         var bundle = ' . $bundlejson . ';
         var apiUrl = ' . json_encode($apibase . '/api/plugin/register') . ';
+        var msgRejected = ' . json_encode(get_string('register_cloud_rejected', 'local_edugears')) . ';
+        var msgUnreachable = ' . json_encode(get_string('register_cloud_unreachable', 'local_edugears')) . ';
 
         fetch(apiUrl, {
             method: "POST",
@@ -174,8 +176,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             body: JSON.stringify(bundle)
         })
         .then(function(resp) {
-            if (!resp.ok) throw new Error("HTTP " + resp.status);
-            return resp.json();
+            if (resp.ok) return resp.json();
+            // The server answered, so this is not a connectivity problem — carry its
+            // own diagnosis (the JSON "detail" field) through to the catch below.
+            return resp.json().then(function(body) {
+                var err = new Error("HTTP " + resp.status);
+                if (body && typeof body.detail === "string" && body.detail) {
+                    err.egDetail = body.detail;
+                }
+                throw err;
+            }, function() {
+                // Error body was missing or not JSON — nothing useful to show.
+                throw new Error("HTTP " + resp.status);
+            });
         })
         .then(function(data) {
             var resultEl = document.getElementById("eg-result");
@@ -193,8 +206,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         })
         .catch(function(err) {
             console.warn("EduGears registration failed:", err);
-            document.getElementById("eg-result").innerHTML =
-                "<p style=\"color:#dc2626;\">Could not reach EduGears server.</p>";
+            var resultEl = document.getElementById("eg-result");
+            resultEl.innerHTML = "";
+            // Server text is injected via textContent only — never built into HTML.
+            var msgEl = document.createElement("p");
+            msgEl.setAttribute("style", "color:#dc2626; margin:0; text-align:left;"
+                + " font-size:14px; line-height:1.5;");
+            if (err && err.egDetail) {
+                var headEl = document.createElement("strong");
+                headEl.textContent = msgRejected;
+                msgEl.appendChild(headEl);
+                msgEl.appendChild(document.createTextNode(" " + err.egDetail));
+            } else {
+                msgEl.textContent = msgUnreachable;
+            }
+            resultEl.appendChild(msgEl);
             document.getElementById("eg-fallback").style.display = "block";
         });
     })();
