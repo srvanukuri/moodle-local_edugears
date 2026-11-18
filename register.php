@@ -46,11 +46,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_sesskey();
 
     // Check if EduGears tool already exists.
-    $existing = $DB->get_record_select(
+    // A site can hold more than one EduGears tool (plugin + URL registration);
+    // take the oldest rather than tripping get_record_select's multiple-records notice.
+    $matches = $DB->get_records_select(
         'lti_types',
         $DB->sql_like('baseurl', ':url'),
-        ['url' => '%lti-api.edugears.ai%']
+        ['url' => '%lti-api.edugears.ai%'],
+        'id ASC',
+        '*',
+        0,
+        1
     );
+    $existing = $matches ? reset($matches) : false;
 
     if ($existing) {
         $typeid = $existing->id;
@@ -165,10 +172,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // JavaScript: send bundle to EduGears from the admin's browser.
     echo '<script>
     (function() {
-        var bundle = ' . $bundlejson . ';
+        var bundle = ' . json_encode($bundle, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . ';
         var apiUrl = ' . json_encode($apibase . '/api/plugin/register') . ';
         var msgRejected = ' . json_encode(get_string('register_cloud_rejected', 'local_edugears')) . ';
         var msgUnreachable = ' . json_encode(get_string('register_cloud_unreachable', 'local_edugears')) . ';
+        var msgNextTitle = ' . json_encode(get_string('register_next_title', 'local_edugears')) . ';
+        var msgNextCourse = ' . json_encode(get_string('register_next_course', 'local_edugears')) . ';
+        var msgAccountButton = ' . json_encode(get_string('register_account_button', 'local_edugears')) . ';
+        var msgNextAccount = ' . json_encode(get_string('register_next_account', 'local_edugears')) . ';
+        var msgClaimLabel = ' . json_encode(get_string('register_claim_label', 'local_edugears')) . ';
+        var msgClaimSave = ' . json_encode(get_string('register_claim_save', 'local_edugears')) . ';
+        var msgDoneNoUrl = ' . json_encode(get_string('register_done_no_url', 'local_edugears')) . ';
+        var portalUrl = ' . json_encode($apibase . '/portal') . ';
 
         fetch(apiUrl, {
             method: "POST",
@@ -192,17 +207,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         })
         .then(function(data) {
             var resultEl = document.getElementById("eg-result");
+            var code = String((data && data.claim_code) || "");
+            // Fixed markup from language strings only; the server-supplied claim
+            // code is set below via textContent / encodeURIComponent.
+            resultEl.style.textAlign = "left";
             resultEl.innerHTML = ""
+                + "<div style=\"background:#f8fafc; border:1px solid #e2e8f0;"
+                + " border-radius:8px; padding:16px 20px; margin-bottom:16px;\">"
+                + "  <h4 style=\"margin:0 0 10px; font-size:16px; color:#0f172a;\">" + msgNextTitle + "</h4>"
+                + "  <ol style=\"margin:0; padding-left:20px; color:#334155; font-size:14px; line-height:1.7;\">"
+                + "    <li>" + msgNextCourse + "</li>"
+                + "    <li>" + msgNextAccount + "</li>"
+                + "  </ol>"
+                + "</div>"
                 + "<div style=\"background:#ecfdf5; border:2px solid #059669;"
                 + " border-radius:8px; padding:16px; text-align:center;\">"
-                + "  <p style=\"margin:0 0 8px; font-size:14px; color:#334155;\">Your claim code:</p>"
-                + "  <p style=\"margin:0; font-size:28px; font-weight:700; color:#059669; letter-spacing:2px;\">"
-                +        data.claim_code
-                + "  </p>"
-                + "  <p style=\"margin:12px 0 0; font-size:13px; color:#64748b;\">"
-                + "    Save this code — you will need it later to link your billing account."
-                + "  </p>"
-                + "</div>";
+                + "  <p style=\"margin:0 0 8px; font-size:14px; color:#334155;\">" + msgClaimLabel + "</p>"
+                + "  <p id=\"eg-claim-code\" style=\"margin:0; font-size:28px; font-weight:700;"
+                + " color:#059669; letter-spacing:2px;\"></p>"
+                + "  <p style=\"margin:16px 0 0;\"><a id=\"eg-account-link\" class=\"btn btn-primary\""
+                + " target=\"_blank\" rel=\"noopener\"></a></p>"
+                + "  <p style=\"margin:12px 0 0; font-size:13px; color:#64748b;\">" + msgClaimSave + "</p>"
+                + "</div>"
+                + "<p style=\"margin:16px 0 0; font-size:13px; color:#64748b;\">" + msgDoneNoUrl + "</p>";
+            document.getElementById("eg-claim-code").textContent = code;
+            var linkEl = document.getElementById("eg-account-link");
+            linkEl.textContent = msgAccountButton;
+            linkEl.href = portalUrl + (code ? "?claim_code=" + encodeURIComponent(code) : "");
         })
         .catch(function(err) {
             console.warn("EduGears registration failed:", err);
@@ -236,7 +267,7 @@ echo $OUTPUT->header();
 // Page heading is already rendered by $PAGE->set_heading().
 
 // Check if already registered.
-$existing = $DB->get_record_select(
+$existing = $DB->record_exists_select(
     'lti_types',
     $DB->sql_like('baseurl', ':url'),
     ['url' => '%lti-api.edugears.ai%']

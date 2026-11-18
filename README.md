@@ -8,6 +8,8 @@ Watch the setup video for a step-by-step walkthrough: [EduGears AI Moodle Setup]
 
 ## Two Ways to Register
 
+Pick **one** of the two options below, not both. Using both creates two EduGears AI tools on your Moodle site, each with its own separate EduGears AI registration.
+
 ### Option 1: Plugin Registration (Recommended for Firewalled Sites)
 
 If your Moodle site is behind a firewall or cannot be reached from the internet, **install this plugin** and use the one-click registration:
@@ -15,7 +17,8 @@ If your Moodle site is behind a firewall or cannot be reached from the internet,
 1. Install this plugin (ZIP upload or extract to `/local/edugears/`)
 2. Go to **Site Administration → Notifications** to complete the installation
 3. Click the **Register EduGears AI** button in the install notification (or go to **Plugins → Local plugins → EduGears AI LTI**)
-4. Done! The tool is created locally and registered with EduGears through your browser — no server-side network access required
+4. Done! The tool is created locally and registered with EduGears through your browser — no server-side network access required. It is active and in the activity chooser straight away.
+5. The success screen shows your claim code and a **Create your EduGears AI account** button. Create the account to manage billing and see usage. You do not need the Registration URL (Option 2) as well.
 
 ### Option 2: URL Registration (Requires Outbound Access)
 
